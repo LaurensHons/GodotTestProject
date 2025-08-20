@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://clrnlsn7hhlgr"]
+
+[ext_resource type="Script" uid="uid://g2i014ex1ejg" path="res://Scripts/TileMapManager.cs" id="1_x4av3"]
+[ext_resource type="Texture2D" uid="uid://u5ila6dh42j8" path="res://Assets/grass.png" id="2_rpqi1"]
+[ext_resource type="Script" uid="uid://cu8fldisycpgr" path="res://Scripts/Camera.cs" id="3_a814b"]
+[ext_resource type="Script" uid="uid://ds24ehfxmlgkp" path="res://Scripts/Player.cs" id="3_rf2cd"]
+[ext_resource type="Texture2D" uid="uid://laqdvbwvwun0" path="res://Assets/Dudde/Dude.png" id="3_uxrcv"]
+[ext_resource type="Texture2D" uid="uid://dd2skgc1eh2fo" path="res://Assets/Dudde/Walk 2.png" id="4_rf2cd"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x4av3"]
+texture = ExtResource("2_rpqi1")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_1305s"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_x4av3")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a814b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_uxrcv")
+}],
+"loop": true,
+"name": &"Stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_uxrcv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rf2cd")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5crlr"]
+radius = 37.0
+height = 140.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_1305s")
+script = ExtResource("1_x4av3")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("Player")]
+position = Vector2(571, 317)
+script = ExtResource("3_a814b")
+Player = NodePath("../Player")
+
+[node name="Grass" type="Sprite2D" parent="."]
+position = Vector2(573, 319.5)
+scale = Vector2(8.92188, 4.97656)
+texture = ExtResource("2_rpqi1")
+
+[node name="Player" type="Area2D" parent="."]
+script = ExtResource("3_rf2cd")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_a814b")
+animation = &"Walk"
+frame_progress = 0.524947
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-8, 0)
+shape = SubResource("CapsuleShape2D_5crlr")
+one_way_collision_margin = 1.9
+debug_color = Color(0, 0.510029, 0.843584, 0.42)
