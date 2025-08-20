@@ -17,7 +17,7 @@ public partial class Player : Area2D
 	public override void _Ready()
 	{
 		base._Ready();
-		ScreenSize = GetViewport().GetVisibleRect().Size;
+		ScreenSize = new Vector2(128*20, 128*20);
 	}
 
 	public override void _Process(double delta)
@@ -62,9 +62,11 @@ public partial class Player : Area2D
 	private void SetPosition(Vector2 velocity, float delta)
 	{
 		Position += velocity * delta;
+
+		// clamp position to screen size edge
 		Position = new Vector2(
-			x: Mathf.Clamp(Position.X, 0, ScreenSize.X),
-			y: Mathf.Clamp(Position.Y, 0, ScreenSize.Y)
+			x: Mathf.Clamp(Position.X, -ScreenSize.X/2, ScreenSize.X/2),
+			y: Mathf.Clamp(Position.Y, -ScreenSize.Y/2, ScreenSize.Y/2)
 		);
 	}
 }

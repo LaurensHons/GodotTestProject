@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://clrnlsn7hhlgr"]
+[gd_scene load_steps=13 format=3 uid="uid://clrnlsn7hhlgr"]
 
 [ext_resource type="Script" uid="uid://g2i014ex1ejg" path="res://Scripts/TileMapManager.cs" id="1_x4av3"]
 [ext_resource type="Texture2D" uid="uid://u5ila6dh42j8" path="res://Assets/grass.png" id="2_rpqi1"]
 [ext_resource type="Script" uid="uid://cu8fldisycpgr" path="res://Scripts/Camera.cs" id="3_a814b"]
 [ext_resource type="Script" uid="uid://ds24ehfxmlgkp" path="res://Scripts/Player.cs" id="3_rf2cd"]
 [ext_resource type="Texture2D" uid="uid://laqdvbwvwun0" path="res://Assets/Dudde/Dude.png" id="3_uxrcv"]
+[ext_resource type="SpriteFrames" uid="uid://cknrd43a45igl" path="res://Assets/Tree/Tree_spriteframe.tres" id="4_5crlr"]
 [ext_resource type="Texture2D" uid="uid://dd2skgc1eh2fo" path="res://Assets/Dudde/Walk 2.png" id="4_rf2cd"]
+[ext_resource type="Script" uid="uid://brhc85qiwlsq1" path="res://Scripts/Growable.cs" id="5_hbc2u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x4av3"]
 texture = ExtResource("2_rpqi1")
@@ -53,10 +55,19 @@ position = Vector2(571, 317)
 script = ExtResource("3_a814b")
 Player = NodePath("../Player")
 
-[node name="Grass" type="Sprite2D" parent="."]
-position = Vector2(573, 319.5)
-scale = Vector2(8.92188, 4.97656)
+[node name="Map" type="Sprite2D" parent="."]
+scale = Vector2(20, 20)
 texture = ExtResource("2_rpqi1")
+
+[node name="Tree" type="AnimatedSprite2D" parent="Map"]
+position = Vector2(-10.4, -22.85)
+scale = Vector2(0.0730468, 0.0730469)
+sprite_frames = ExtResource("4_5crlr")
+animation = &"grow"
+frame_progress = 0.923965
+script = ExtResource("5_hbc2u")
+SecondsPerStage = 3
+AmountOfStages = 5
 
 [node name="Player" type="Area2D" parent="."]
 script = ExtResource("3_rf2cd")

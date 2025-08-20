@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://cknrd43a45igl"]
+
+[ext_resource type="Texture2D" uid="uid://dbvu1c118og6b" path="res://Assets/Tree/Tree 1.png" id="1_3ohj4"]
+[ext_resource type="Texture2D" uid="uid://mjcdi463b64j" path="res://Assets/Tree/Tree 2.png" id="2_74ojt"]
+[ext_resource type="Texture2D" uid="uid://bqwjpr7d1wmoc" path="res://Assets/Tree/Tree 3.png" id="3_mlja1"]
+[ext_resource type="Texture2D" uid="uid://d3ka72uabxn5h" path="res://Assets/Tree/Tree 4.png" id="4_xw2qq"]
+[ext_resource type="Texture2D" uid="uid://c0yld71ndcoe7" path="res://Assets/Tree/Tree 5.png" id="5_h4wxo"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3ohj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_74ojt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mlja1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xw2qq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_h4wxo")
+}],
+"loop": true,
+"name": &"grow",
+"speed": 5.0
+}]
